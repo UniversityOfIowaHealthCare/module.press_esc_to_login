@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Implements hook_help()
+ * Implements hook_help().
  */
-function press_esc_to_login_help($path, $arg) {
-  switch ($path) {
-    case 'admin/help#press_esc_to_login':
+function press_esc_to_login_help($route_name, $route_match) {
+  switch ($route_name) {
+    case 'help.page.press_esc_to_login':
       return t('Press the escape key (ESC) from any page to quickly navigate to the admin login page.');
   }
 }
 
 /**
- * Implements hook_page_build().
+ * Implements hook_page_attachments().
  */
-function press_esc_to_login_page_build(&$page) {
-  global $base_url;
+function press_esc_to_login_page_attachments(&$page) {
+  $userNotLoggedIn = \Drupal::currentUser()->isAnonymous();
 
-  $path_to_js = drupal_get_path('module', 'press_esc_to_login'). '/press_esc_to_login.js';
+  if ($userNotLoggedIn) {
+    global $base_url;
 
-  if (!user_is_logged_in()) {
-    drupal_add_js($path_to_js);
-    drupal_add_js(['pressEscToLogin' => ['loginPath' => $base_url . '/user']], 'setting');
+    $page['#attached']['library'][] = 'press_esc_to_login/press_esc_to_login';
+    $page['#attached']['drupalSettings']['pressEscToLogin']['loginPath'] = $base_url . '/user';
   }
 }
