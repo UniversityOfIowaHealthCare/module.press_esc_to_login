@@ -12,6 +12,7 @@ CONTENTS OF THIS FILE
 
 INTRODUCTION
 ------------
+
 Press ESC to login module allows you to simply and quickly login
 to your page by clicking esc button in any location of your site.
 Module works for multisite login as well.
@@ -33,7 +34,7 @@ INSTALLATION
 ------------
 
  * Install as you would normally install a contributed Drupal module. Visit:
-   https://www.drupal.org/documentation/install/modules-themes/modules-7
+   https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
    for further information.
 
 
